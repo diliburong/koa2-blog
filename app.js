@@ -9,6 +9,8 @@ const logger = require('koa-logger')
 const index = require('./routes/index')
 const users = require('./routes/users')
 
+const myLogger = require('./testMiddleware/my-log.js')
+
 // error handler
 onerror(app)
 
@@ -16,6 +18,7 @@ onerror(app)
 app.use(bodyparser({
   enableTypes:['json', 'form', 'text']
 }))
+app.use(myLogger)
 app.use(json())
 app.use(logger())
 app.use(require('koa-static')(__dirname + '/public'))
