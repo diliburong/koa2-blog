@@ -1,0 +1,50 @@
+.article-item {
+    margin-bottom: 6rem;
+}
+
+.article-message {
+    font-weight: bold;
+    padding-bottom: 1rem;
+}
+
+.article-message .date {
+}
+
+.article-message .tag {
+    color: #FF6600;
+}
+
+.article-title {
+    color: #515151;
+    margin-bottom: 1rem;
+}
+
+.article-summary {
+    margin-bottom: 1rem;
+}
+
+.read-btn {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.articl-container {
+    padding-top: 10rem;
+}
+
+.titile_wrapper {
+    text-align: center;
+}
+
+.article-detail-title {
+    color: #515151;
+    text-align: center;
+    font-weight: 500;
+    /* letter-spacing: .1rem; */
+    margin-bottom: .5rem;
+}
+
+.titile_wrapper {
+    color: #FF6600;
+    font-size: 2.5rem;
+} 
