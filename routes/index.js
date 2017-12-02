@@ -1,11 +1,12 @@
 const router = require('koa-router')()
 const index = require('../controllers/index')
+const md = require('markdown-it')()
+var result = md.render('# markdown')
 
 router.get('/', index)
 
 router.get('/string', async (ctx, next) => {
-  console.log(ctx.url + '123')
-  ctx.body = 'koa2 string' + ctx.url
+  ctx.body = result
 })
 
 router.get('/json', async (ctx, next) => {

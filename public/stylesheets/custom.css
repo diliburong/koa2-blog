@@ -28,11 +28,11 @@
     font-size: 18px;
 }
 
-.articl-container {
+.article-container {
     padding-top: 10rem;
 }
 
-.titile_wrapper {
+.title-wrapper {
     text-align: center;
 }
 
@@ -44,7 +44,17 @@
     margin-bottom: .5rem;
 }
 
-.titile_wrapper {
+.title-wrapper .tag{
     color: #FF6600;
     font-size: 2.5rem;
-} 
+}
+
+.article-content {
+    font-size: 1.8rem;
+    letter-spacing: -.05rem;
+    line-height: 1.5;
+}
+
+.article-content h1 {
+    color: #818181;
+}
