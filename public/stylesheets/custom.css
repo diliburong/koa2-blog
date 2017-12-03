@@ -1,5 +1,12 @@
 .article-item {
     margin-bottom: 6rem;
+    border-bottom: 1px solid transparent;
+}
+
+.article-item:hover {
+    border-bottom: 1px solid silver;
+    border-radius: 5px;
+    /* box-sizing: content-box; */
 }
 
 .article-message {
@@ -57,4 +64,8 @@
 
 .article-content h1 {
     color: #818181;
+}
+
+::selection {
+    background: #ff0;
 }
