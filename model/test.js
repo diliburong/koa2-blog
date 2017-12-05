@@ -1,6 +1,5 @@
 const User = require('./user.js')
 
-
 function inset() {
     let user = new User({
         name: "mavin",

@@ -2,4 +2,9 @@ extends layout
 
 block content
   div.article-container
-    h1 333
+    form.login-form(action="/login" method="post")
+      label(for="username") username
+      input(type="text", name="username" placeholder="User Name")
+      label(for="password") password
+      input(type="password", name="password" placeholder="Password")
+      button(type="submit") Login

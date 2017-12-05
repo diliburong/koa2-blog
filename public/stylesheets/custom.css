@@ -66,6 +66,23 @@
     color: #818181;
 }
 
+.login-form {
+    width: 20em;
+    margin: auto;
+}
+
+@media (max-width:15rem) {
+    .login-form {
+        width: 15em;
+    }
+}
+
+@media (min-width:80rem) {
+    .login-form {
+        width: 25em;
+    }
+}
+
 ::selection {
     background: #ff0;
 }

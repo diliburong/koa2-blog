@@ -10,7 +10,7 @@ db.connection.once('connected', function () {
     console.log("connected mongoodb!")
 })
 db.connection.on('error', function () {
-    console.log('连接错误:');
+    console.log('connect error');
 })
 db.connection.on('disconnected', function () {
     console.log('Mongoose connection disconnected')
