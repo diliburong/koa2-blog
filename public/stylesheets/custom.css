@@ -1,3 +1,25 @@
+
+.navigation-link:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 10px;
+    left: 0;
+    background-color: #42b983;
+    visibility: hidden;
+    transform: scaleX(0);
+    -webkit-transition: .3s ease-in-out;
+    -moz-transition: .3s ease-in-out;
+    transition: .3s ease-in-out;
+}
+
+.navigation-link:hover:after {
+    visibility: visible;
+    transform: scaleX(1)
+}
+
+
 .article-item {
     margin-bottom: 6rem;
     border-bottom: 1px solid transparent;

@@ -1,26 +1,8 @@
 const router = require('koa-router')()
+const user = require('../controllers/user')
 
-router.get('/login', async (ctx, next) => {
-    const title = 'login'
-    await ctx.render('login', {
-        title
-    })
-})
-
-router.post('/login', async (ctx, next) => {
-    console.log(ctx.request.body)
-    ctx.response.redirect('/test');
-    // await ctx.render('test', {
-    //     message: ctx.request.body.username
-    // })
-})
-
-
-router.get('/test', async (ctx, next) => {
-    await ctx.render('test', {
-        title:'123'
-    })
-})
+router.get('/login', user.login)
+router.post('/login', user.logIn)
 
 
 module.exports = router
