@@ -1,9 +1,13 @@
 const User = require('./user.js')
+const md5 = require('md5')
+
+//console.log(md5('202cb962ac59075b964b07152d234b70'))
 
 function inset() {
     let user = new User({
-        name: "mavin",
-        password: "333"
+        name: "stutter",
+        email: "452061213@qq.com",
+        password: md5("123")
     })
     user.save(function (err, res) {
         if (err) {
@@ -38,4 +42,4 @@ function remove() {
     })
 }
 
-inset()
+//inset()

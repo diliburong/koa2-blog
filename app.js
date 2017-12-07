@@ -9,7 +9,6 @@ const logger = require('koa-logger')
 const index = require('./routes/index')
 const users = require('./routes/users')
 const article = require('./routes/article')
-const auth = require('./routes/auth')
 
 // const myLogger = require('./testMiddleware/my-log.js')
 
@@ -41,7 +40,6 @@ app.use(async (ctx, next) => {
 app.use(index.routes(), index.allowedMethods())
 app.use(users.routes(), users.allowedMethods())
 app.use(article.routes(), article.allowedMethods())
-app.use(auth.routes(), auth.allowedMethods())
 
 // error-handling
 app.on('error', (err, ctx) => {

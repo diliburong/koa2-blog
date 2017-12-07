@@ -2,7 +2,8 @@ const mongodb = require('../config/default.js')
 const Schema = mongodb.Schema
 
 let userItem = {
-    name: String,
+    name: { type: String, unique: true },
+    email:{ type: String, unique: true },
     password: String
 }
 
