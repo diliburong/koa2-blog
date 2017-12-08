@@ -1,9 +1,10 @@
 const router = require('koa-router')()
 const index = require('../controllers/index')
+const articleController = require('../controllers/articleController')
 const md = require('markdown-it')()
 var result = md.render('# markdown')
 
-router.get('/', index)
+router.get('/', articleController.showAllArticles)
 
 router.get('/string', async (ctx, next) => {
   ctx.body = result

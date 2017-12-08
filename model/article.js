@@ -2,8 +2,18 @@ const mongodb = require('../config/default.js')
 const Schema = mongodb.Schema
 
 let arcitleItem = {
-  title:String,
-  content:String
+  title: String,
+  author: String,
+  description: String,
+  content: String,
+  tag: String,
+  updated: {
+    type: Date,
+    default: Date.now()
+  },
+  pv: {
+    type: Number, default: 0 
+  }
 }
 
 
