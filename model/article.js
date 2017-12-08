@@ -2,8 +2,8 @@ const mongodb = require('../config/default.js')
 const Schema = mongodb.Schema
 
 let arcitleItem = {
-    title:String,
-    content:String
+  title:String,
+  content:String
 }
 
 
