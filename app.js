@@ -7,12 +7,13 @@ const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
 const session = require('koa-session')
 const flashMessage = require('koa-flash-message')
+const CSRF = require('koa-csrf')
 
 const index = require('./routes/index')
 const users = require('./routes/users')
 const article = require('./routes/article')
 
-// const myLogger = require('./testMiddleware/my-log.js')
+ const helper = require('./testMiddleware/index.js')
 
 // error handler
 onerror(app)
@@ -33,6 +34,20 @@ app.use(require('koa-static')(__dirname + '/public'))
 app.use(views(__dirname + '/views', {
   extension: 'pug'
 }))
+
+// csrf
+app.use(new CSRF({
+  invalidSessionSecretMessage: 'Invalid session secret',
+  invalidSessionSecretStatusCode: 403,
+  invalidTokenMessage: 'Invalid CSRF token',
+  invalidTokenStatusCode: 403,
+  excludedMethods: ['GET', 'HEAD', 'OPTIONS'],
+  disableQuery: false
+}));
+
+
+app.use(helper)
+
 
 // logger
 app.use(async (ctx, next) => {

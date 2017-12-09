@@ -4,6 +4,7 @@ block content
   div.article-container
     form.login-form(action="/login" method="post")
       h2 Login
+      input(type="hidden" name="_csrf" value=csrf)
       input(type="text", name="username" placeholder="User Name")
       input(type="password", name="password" placeholder="Password")
       button(type="submit") Login
