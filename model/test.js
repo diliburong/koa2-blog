@@ -44,11 +44,11 @@ function remove() {
 
 function insertArticle() {
   let article = new Article({
-    title: 'From the Desk of the Politely',
+    title: 'Two Habits that Changed my Career',
     author: 'stutter',
-    description: 'The main reason behind this redesign was to add the case studies–I wanted to feel “finished” with my last position and it felt ',
-    content: '# markdowntest \n # 123 \n #test',
-    tag: 'test'
+    description: 'It’s the small things that make big waves. I have two habits I’ve picked up over the years which I can attribute a large part of my productive periods',
+    content: '# Taking Notes \n I was a bad student. I didn’t bring my homework home; doing it during lunches and classes to avoid lugging my textbooks around. As a result, I never picked up any good learning habits at the time I probably should have.\n While this served me okay until past college, my refusal to take notes didn’t serve me so well long-term. It was fine as a Junior Designer but it became a big negative as my projects became more complex.\n # Feedback Loops',
+    tag: 'work'
   })
   article.save((err, res) => {
     if (err) {
@@ -70,6 +70,7 @@ function findArticleById() {
 
   console.log(user)
 }
-//insertArticle()
+
+insertArticle()
 // inset()
-findArticleById()
+//findArticleById()

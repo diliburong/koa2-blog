@@ -3,11 +3,13 @@ const md = require('markdown-it')()
 
 
 const showArticle = async (ctx, next) => {
-  let id = '5a2a9a00c7811c294810dc72'
+  let id = ctx.params.id
   let article = await Article.findById(id).exec()
   const title = 'article'
   await ctx.render('article', {
     title,
+    tag: article.tag,
+    articleTitle: article.title,
     result: md.render(article.content)
   })
 }
