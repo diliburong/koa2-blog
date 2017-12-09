@@ -7,7 +7,7 @@ html
     link(rel="stylesheet", href="/stylesheets/custom.css")
     meta(name='viewport', content='user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0')
   body
-    <main class="wrapper">
+    main.wrapper
       nav.navigation
         section.container
           a(href="#").navigation-title
@@ -20,4 +20,9 @@ html
             li.navigation-item
               a(href="#").navigation-link About
 
-    block content
+      block content
+    
+    footer.footer
+      p
+        | Power by stutter   
+        a(href="https://github.com/diliburong/koa2-blog") &nbsp © stutter

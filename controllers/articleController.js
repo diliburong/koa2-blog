@@ -17,7 +17,6 @@ const showArticle = async (ctx, next) => {
 const showAllArticles = async (ctx, next) => {
   let articles = await Article.find().exec()
   const title = 'home'
-  console.log(articles)
   await ctx.render('index', {
     title,
     articles

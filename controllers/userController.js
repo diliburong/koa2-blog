@@ -14,13 +14,13 @@ const logIn = async (ctx, next) => {
   const body = ctx.request.body
   const username = body.username
   const password = body.password
-  console.log(username)
   let user = await User.findOne({
     'username': username
   }).exec()
 
-  console.log(user)
   if (user && md5(password) === user.password ) {
+    ctx.session.userId = user._id
+    console.log(ctx.session)
     ctx.redirect('/')
   } else {
     await ctx.render('login')
