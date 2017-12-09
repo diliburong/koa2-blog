@@ -6,6 +6,7 @@ const onerror = require('koa-onerror')
 const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
 const session = require('koa-session')
+const flashMessage = require('koa-flash-message')
 
 const index = require('./routes/index')
 const users = require('./routes/users')
@@ -20,7 +21,7 @@ onerror(app)
 // middlewares
 app.keys = ['123']
 app.use(session(app))
-
+app.use(flashMessage)
 app.use(bodyparser({
   enableTypes:['json', 'form', 'text']
 }))

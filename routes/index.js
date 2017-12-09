@@ -16,4 +16,13 @@ router.get('/json', async (ctx, next) => {
   }
 })
 
+router.get('/test', async (ctx, next) => {
+  //let n = ctx.flashMessage.warning || 0;
+  
+  ctx.flashMessage.warning = 'Log Out Successfully!'
+  console.log(ctx.flashMessage.warning)
+  console.log(ctx.flashMessage.warning + '123')
+  ctx.body = ctx.flashMessage.warning
+})
+
 module.exports = router

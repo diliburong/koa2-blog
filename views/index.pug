@@ -3,6 +3,12 @@ extends layout
 block content
   header.header
     .container
+      - var messages = flashMessage && flashMessage.messages
+      - if (messages)
+        - var messageKeys = Object.keys(messages)
+        each messageKey in messageKeys
+          p
+          = messages[messageKey]
       
   .container
     each item in articles

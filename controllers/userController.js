@@ -20,10 +20,13 @@ const logIn = async (ctx, next) => {
 
   if (user && md5(password) === user.password ) {
     ctx.session.userId = user._id
-    console.log(ctx.session)
+    ctx.status = 302
+    ctx.flashMessage.notice = 'Log In Successfully!'
     ctx.redirect('/')
   } else {
-    await ctx.render('login')
+    const locals = { nav: 'signIn' }
+    ctx.flashMessage.warning = 'User name or Password Error.'
+    await ctx.render('login', locals)
   }
 }
 
