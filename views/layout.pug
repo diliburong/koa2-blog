@@ -1,10 +1,11 @@
 doctype html
 html
   head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
-    link(rel='stylesheet', href='/stylesheets/main.css')
-    link(rel="stylesheet", href="/stylesheets/custom.css")
+    block head
+      title= title
+      link(rel='stylesheet', href='/stylesheets/style.css')
+      link(rel='stylesheet', href='/stylesheets/main.css')
+      link(rel="stylesheet", href="/stylesheets/custom.css")
     meta(name='viewport', content='user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0')
   body
     main.wrapper
@@ -26,3 +27,5 @@ html
       p
         | Power by stutter   
         a(href="https://github.com/diliburong/koa2-blog") &nbsp © stutter
+
+    block dynamicJs

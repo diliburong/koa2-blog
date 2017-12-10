@@ -1,1 +1,29 @@
+extends layout
 
+block append head
+  link(rel="stylesheet", href="/js/components/markdownWeb/index.css")
+
+block content
+  div.article-container
+    div.markdown-edit
+      .main
+        form.noet-form(action="")
+          input.title(type="text" name="note-name")
+          textarea#markdown-editor(onkeyup="convert()")
+      .preview
+        #result
+
+
+block dynamicJs
+  script(src='/js/showdown.min.js')
+  script.
+    function convert() {
+      var text = document.getElementById("markdown-editor").value;
+      var converter = new showdown.Converter();
+      var html = converter.makeHtml(text);
+      document.getElementById("result").innerHTML = html;
+    }
+
+
+
+  

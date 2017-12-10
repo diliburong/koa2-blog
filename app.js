@@ -12,6 +12,7 @@ const CSRF = require('koa-csrf')
 const index = require('./routes/index')
 const users = require('./routes/users')
 const article = require('./routes/article')
+const teset = require('markdown-it-editor')
 
  const helper = require('./testMiddleware/index.js')
 
