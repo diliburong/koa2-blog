@@ -12,7 +12,9 @@ var result = md.render('# markdown \n # 123')
 //     })
 // })
 
+
 router.get('/article/:id', articleController.showArticle)
 
+router.post('/create', articleController.createArticle)
 
 module.exports = router

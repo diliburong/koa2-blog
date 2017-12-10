@@ -24,7 +24,13 @@ const showAllArticles = async (ctx, next) => {
 
 }
 
+const createArticle  = async (ctx, next) => {
+  let text = ctx.request.body.content
+
+}
+
 module.exports = {
   showArticle,
-  showAllArticles
+  showAllArticles,
+  createArticle
 }

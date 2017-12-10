@@ -1,17 +1,21 @@
 extends layout
 
 block append head
-  link(rel="stylesheet", href="/js/components/markdownWeb/index.css")
 
 block content
   div.article-container
-    div.markdown-edit
-      .main
-        form.noet-form(action="")
-          input.title(type="text" name="note-name")
-          textarea#markdown-editor(onkeyup="convert()")
-      .preview
+    .markdown-edit.row
+      .main.column.column-50
+        form.note-form(action="/create" method="post")
+          input(type="hidden" name="_csrf" value=csrf)
+          input.title#article-title(type="text" name="note_title" onkeyup="addToConvert()")
+          textarea#markdown-editor(onkeyup="convert()" name="content")
+          input(type="submit", value="submit")
+      .preview.column.column-50
+        h1 title
         #result
+
+
 
 
 block dynamicJs
@@ -22,6 +26,11 @@ block dynamicJs
       var converter = new showdown.Converter();
       var html = converter.makeHtml(text);
       document.getElementById("result").innerHTML = html;
+    }
+
+    function addToConvert() {
+      var text  = document.getElementById("article-title").value;
+      
     }
 
 
