@@ -6,7 +6,7 @@ const onerror = require('koa-onerror')
 const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
 const session = require('koa-session')
-const flashMessage = require('koa-flash-message')
+const flashMessage = require('./middleware/flashMessage.js')
 const CSRF = require('koa-csrf')
 
 const index = require('./routes/index')
