@@ -11,9 +11,11 @@ var result = md.render('# markdown \n # 123')
 //         result: result
 //     })
 // })
+router.prefix('/article')
 
 
-router.get('/article/:id', articleController.showArticle)
+router.get('/create', articleController.toCreateArticlePage);
+router.get('/:id', articleController.showArticle)
 
 router.post('/create', articleController.createArticle)
 

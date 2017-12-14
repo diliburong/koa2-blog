@@ -24,6 +24,13 @@ const showAllArticles = async (ctx, next) => {
 
 }
 
+const toCreateArticlePage = async (ctx, next) => {
+  const title = 'Create Article'
+  await ctx.render('articles/createArticle', {
+    title
+  })
+}
+
 const createArticle  = async (ctx, next) => {
   let text = ctx.request.body.content
 
@@ -32,5 +39,6 @@ const createArticle  = async (ctx, next) => {
 module.exports = {
   showArticle,
   showAllArticles,
+  toCreateArticlePage,
   createArticle
 }

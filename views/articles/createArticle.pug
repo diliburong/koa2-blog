@@ -1,0 +1,16 @@
+extends ../layout
+
+block append head
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+  <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+
+block content
+  div.article-container
+    .container
+      include ./form.pug
+
+
+block dynamicJs
+  script(src='/js/showdown.min.js')
+  script.
+    var simplemde = new SimpleMDE({ element: document.getElementById("markdown-editor") });
