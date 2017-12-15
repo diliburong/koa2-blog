@@ -16,6 +16,7 @@ router.prefix('/article')
 
 router.get('/create', articleController.toCreateArticlePage);
 router.get('/:id', articleController.showArticle)
+router.get('/edit/:id', articleController.toEditArticlePage)
 
 router.post('/create', articleController.createArticle)
 

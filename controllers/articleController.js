@@ -5,7 +5,7 @@ const md = require('markdown-it')()
 const showArticle = async (ctx, next) => {
   let id = ctx.params.id
   let article = await Article.findById(id).exec()
-  const title = 'article'
+  const title = article.title
   await ctx.render('article', {
     title,
     tag: article.tag,
@@ -26,13 +26,36 @@ const showAllArticles = async (ctx, next) => {
 
 const toCreateArticlePage = async (ctx, next) => {
   const title = 'Create Article'
-  await ctx.render('articles/createArticle', {
-    title
+
+  if (!ctx.session.userId) {
+    ctx.redirect('/login')
+  }
+
+  await ctx.render('articles/create', {
+    title,
+    articleFormPath:'/create'
   })
 }
 
 const createArticle  = async (ctx, next) => {
+  let noteTitle = ctx.request.body.note_title
   let text = ctx.request.body.content
+
+}
+
+const toEditArticlePage = async (ctx, next) => {
+  let id = ctx.params.id
+  let article = await Article.findById(id).exec()
+  const title = 'Edit Article'
+  console.log(article)
+  await ctx.render('articles/edit', {
+    title,
+    articleTitle: article.title,
+    articleContent: article.content
+  })
+}
+
+const editArticle = async (ctx, next) => {
 
 }
 
@@ -40,5 +63,7 @@ module.exports = {
   showArticle,
   showAllArticles,
   toCreateArticlePage,
-  createArticle
+  createArticle,
+  toEditArticlePage,
+  editArticle
 }
