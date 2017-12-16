@@ -4,6 +4,7 @@ module.exports = async (ctx, next) => {
   console.log(ctx.session)
   await ctx.render('index', {
     title,
-    url
+    url,
+    nav: 'home'
   })
 }

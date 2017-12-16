@@ -104,12 +104,12 @@
 .navigation .navigation-list {
     list-style: none;
     margin-bottom: 0;
-    margin-right: 0rem
+   
 }
 
 @media (min-width:80rem) {
     .navigation .navigation-list {
-        margin-right: 0
+       
     }
 }
 

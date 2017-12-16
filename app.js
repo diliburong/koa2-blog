@@ -14,7 +14,7 @@ const users = require('./routes/users')
 const article = require('./routes/article')
 const teset = require('markdown-it-editor')
 
- const helper = require('./testMiddleware/index.js')
+const helper = require('./middleware/index.js')
 
 // error handler
 onerror(app)

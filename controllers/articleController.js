@@ -16,7 +16,8 @@ const showArticle = async (ctx, next) => {
     title,
     tag: article.tag,
     articleTitle: article.title,
-    result: md.render(article.content)
+    result: md.render(article.content),
+    nav: 'article'
   })
 }
 
@@ -25,7 +26,8 @@ const showAllArticles = async (ctx, next) => {
   const title = 'home'
   await ctx.render('index', {
     title,
-    articles
+    articles,
+    nav: 'home'
   })
 
 }

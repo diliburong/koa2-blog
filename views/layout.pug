@@ -11,23 +11,30 @@ html
     main.wrapper
       nav.navigation
         section.container
-          a(href="#").navigation-title
+          a(href="/").navigation-title.float-left
             h1.title Stutter
+          ul.navigation-list.float-left
+            li.navigation-item
+              a(href="#" class=Utils.isActive('home', nav)).navigation-link Home
+            li.navigation-item
+              a(href="#" class=Utils.isActive('article', nav)).navigation-link Article
+            li.navigation-item
+              a(href="#" class=Utils.isActive('about', nav)).navigation-link About
           ul.navigation-list.float-right
-            li.navigation-item
-              a(href="#").navigation-link Home
-            li.navigation-item
-              a(href="#").navigation-link Article
-            li.navigation-item
-              a(href="#").navigation-link About
-          ul
             - if(!isUserLogin)
-              li
-                a(href="/login") Login
+              li.navigation-item-right
+                a(href="/login").navigation-link Login
             - else
-              li
-                a(href="/logout") Logout
-
+              li.navigation-item-right
+                .dropdown
+                  a(href="/logout").avatar
+                    img.av(src="//upload.jianshu.io/users/upload_avatars/4998423/12ac3879-1262-410e-beef-684db0667e53.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/120/h/120", alt="")
+                  
+                ul.dropdown-menu
+                  li.dropdown-menu-item
+                    a(href="/logout") Logout
+                  li.dropdown-menu-item
+                    a(href="/") My Home
       block content
     
     footer.footer
