@@ -20,6 +20,13 @@ html
               a(href="#").navigation-link Article
             li.navigation-item
               a(href="#").navigation-link About
+          ul
+            - if(!isUserLogin)
+              li
+                a(href="/login") Login
+            - else
+              li
+                a(href="/logout") Logout
 
       block content
     

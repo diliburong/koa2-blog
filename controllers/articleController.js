@@ -5,6 +5,12 @@ const md = require('markdown-it')()
 const showArticle = async (ctx, next) => {
   let id = ctx.params.id
   let article = await Article.findById(id).exec()
+  
+  if (article == null) {
+    ctx.redirect('/')
+    return
+  }
+  
   const title = article.title
   await ctx.render('article', {
     title,
@@ -31,15 +37,32 @@ const toCreateArticlePage = async (ctx, next) => {
     ctx.redirect('/login')
   }
 
+  console.log(ctx.session.userId)
+
   await ctx.render('articles/create', {
     title,
-    articleFormPath:'/create'
+    articleFormPath:'create'
   })
 }
 
 const createArticle  = async (ctx, next) => {
   let noteTitle = ctx.request.body.note_title
   let text = ctx.request.body.content
+
+  let article = new Article({
+    title: noteTitle,
+    author: 'stutter',
+    description: "",
+    content: text,
+    tage: 'test'
+  })
+
+  article.save().catch(err => {
+    ctx.throw(500, 'server error')
+  })
+  console.log(article.id)
+
+  ctx.redirect('/article/' + article.id)
 
 }
 

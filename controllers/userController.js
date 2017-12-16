@@ -5,6 +5,11 @@ const login = async (ctx, next) => {
     const locals = {
         nav: 'login'
     }
+
+    if (ctx.state.isUserLogin) {
+      ctx.redirect('/')
+      return
+    }
     await ctx.render('login', {
         title: 'Login'
     });
@@ -30,6 +35,17 @@ const logIn = async (ctx, next) => {
   }
 }
 
+const logOut = (ctx, next) => {
+  if (!ctx.state.isUserLogin) {
+    ctx.redirect('/')
+    return
+  }
+
+  ctx.session.userId = null
+  ctx.flashMessage.notice = 'Log out'
+  ctx.redirect('/')
+}
+
 const test = async (ctx, next) => {
   var name
 
@@ -44,5 +60,6 @@ const test = async (ctx, next) => {
 module.exports = {
   login,
   logIn,
+  logOut,
   test
 }
