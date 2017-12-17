@@ -3,6 +3,7 @@ const md5 = require('md5')
 
 const login = async (ctx, next) => {
     const locals = {
+        title: 'Login',
         nav: 'login'
     }
 
@@ -10,9 +11,7 @@ const login = async (ctx, next) => {
       ctx.redirect('/')
       return
     }
-    await ctx.render('login', {
-        title: 'Login'
-    });
+    await ctx.render('login', locals);
 }
 
 const logIn = async (ctx, next) => {
@@ -34,6 +33,42 @@ const logIn = async (ctx, next) => {
     await ctx.render('login', locals)
   }
 }
+
+const toRegister = async (ctx, next) => {
+  const locals = {
+    title: 'Register',
+    nav: 'register'
+  }
+
+  if (ctx.state.isUserLogin) {
+    ctx.redirect('/')
+    return
+  }
+  await ctx.render('register', locals);
+}
+
+const register = async (ctx, next) => {
+  const body = ctx.request.body
+  const username = body.username
+  const password = body.password
+
+  let user = new User({
+    username:username,
+    password: md5(password)
+  })
+
+  try {
+    await user.save()
+  } catch (error) {
+    ctx.throw(500, 'server error')
+  }
+
+  ctx.session.userId = user._id
+  ctx.status = 302
+  ctx.flashMessage.notice = 'Register Successfully!'
+  ctx.redirect('/')
+}
+
 
 const logOut = (ctx, next) => {
   if (!ctx.state.isUserLogin) {

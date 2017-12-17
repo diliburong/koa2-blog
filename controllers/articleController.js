@@ -4,15 +4,15 @@ const md = require('markdown-it')()
 
 const showArticle = async (ctx, next) => {
   let id = ctx.params.id
-  let article = await Article.findById(id).exec()
-  
-  if (article == null) {
-    ctx.redirect('/')
-    return
+  let article = null
+  try {
+    article = await Article.findById(id).exec()
+  } catch (err) {
+    ctx.throw(404)
   }
   
   const title = article.title
-  await ctx.render('article', {
+  await ctx.render('articles/article', {
     title,
     tag: article.tag,
     articleTitle: article.title,
@@ -62,26 +62,43 @@ const createArticle  = async (ctx, next) => {
   article.save().catch(err => {
     ctx.throw(500, 'server error')
   })
-  console.log(article.id)
-
   ctx.redirect('/article/' + article.id)
-
 }
 
 const toEditArticlePage = async (ctx, next) => {
   let id = ctx.params.id
-  let article = await Article.findById(id).exec()
+  let article
+  try {
+    article = await Article.findById(id)
+  } catch (error) {
+    ctx.throw(404)
+  }
   const title = 'Edit Article'
   console.log(article)
   await ctx.render('articles/edit', {
     title,
     articleTitle: article.title,
-    articleContent: article.content
+    articleContent: article.content,
+    nav: 'article'
   })
 }
 
 const editArticle = async (ctx, next) => {
+  let id = ctx.params.id
+  let noteTitle = ctx.request.body.note_title
+  let text = ctx.request.body.content
 
+  let updateStr = {
+    title: noteTitle,
+    content: text,
+    updated: Date.now()
+  }
+
+  try {
+    Article.findByIdAndUpdate(id, updateStr)
+  } catch (error) {
+    ctx.throw(404)
+  }
 }
 
 module.exports = {

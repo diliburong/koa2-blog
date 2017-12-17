@@ -23,7 +23,7 @@ html
           ul.navigation-list.float-right
             - if(!isUserLogin)
               li.navigation-item-right
-                a(href="/login").navigation-link Login
+                a(href="/login" class=Utils.isActive('login', nav)).navigation-link Login
             - else
               li.navigation-item-right
                 .dropdown
