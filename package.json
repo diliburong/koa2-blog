@@ -6,7 +6,7 @@
     "start": "node bin/www",
     "dev": "./node_modules/.bin/nodemon bin/www",
     "prd": "pm2 start bin/www",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha  --recursive"
   },
   "dependencies": {
     "debug": "^2.6.3",
@@ -30,6 +30,10 @@
     "pug": "^2.0.0-rc.1"
   },
   "devDependencies": {
+    "chai": "^4.1.2",
+    "fs": "^0.0.1-security",
+    "mocha": "^4.0.1",
+    "mz": "^2.7.0",
     "nodemon": "^1.8.1"
   }
 }
