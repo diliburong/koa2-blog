@@ -1,5 +1,3 @@
-// const supertest = require('supertest')
-// const app = require('../../app.js')
 const sum = require('./hello')
 
 const assert = require('assert');

@@ -18,7 +18,9 @@ install:
 
 script:
   - yarn test
-  - yarn run cov
+  - yarn run cover
+  
+after_script: "cat coverage/lcov.info | node_modules/coveralls/bin/coveralls.js"
 
 #指定分支，只有指定的分支提交时才会运行脚本
 branches:
