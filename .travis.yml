@@ -1,5 +1,6 @@
 language: node_js
 node_js:
+  - "7"
   - "8"
 
 cache: yarn
@@ -14,4 +15,12 @@ addons:
 
 install:
   - yarn install
+
+script:
+  - yarn test
+
+#指定分支，只有指定的分支提交时才会运行脚本
+branches:
+  only:
+    - master
 

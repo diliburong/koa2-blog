@@ -6,7 +6,9 @@
     "start": "node bin/www",
     "dev": "./node_modules/.bin/nodemon bin/www",
     "prd": "pm2 start bin/www",
-    "test": "mocha  --recursive"
+    "mocha": "mocha --recursive -u bdd",
+    "test": "mocha --recursive",
+    "cov": "./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- --recursive -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
   },
   "dependencies": {
     "debug": "^2.6.3",
@@ -31,7 +33,9 @@
   },
   "devDependencies": {
     "chai": "^4.1.2",
+    "coveralls": "^3.0.0",
     "fs": "^0.0.1-security",
+    "istanbul": "^0.4.5",
     "mocha": "^4.0.1",
     "mz": "^2.7.0",
     "nodemon": "^1.8.1"
