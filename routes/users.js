@@ -11,6 +11,12 @@ router.get('/bar', function (ctx, next) {
   ctx.body = 'this is a users/bar response'
 })
 
++router.get('/json', async (ctx, next) => {
+    ctx.body = {
+      title: 'koa2 json'
+    }
+  })
+
 router.get('/usertest', userController.test)
 
 router.get('/login', userController.login)
