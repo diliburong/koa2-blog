@@ -1,4 +1,4 @@
-const mongodb = require('../config/default.js')
+const mongodb = require('../config/mongodb-config.js')
 const Schema = mongodb.Schema
 
 let userItem = {

@@ -1,6 +1,11 @@
 'use strict'
+const config = require('./index')
 const db = require('mongoose')
-const DB_URL = 'mongodb://localhost:27017/myblog'
+const DB_URL = config.mongodb_url
+
+console.log("process.env.NODE_ENV=" + process.env.NODE_ENV);
+console.log(config.mongodb_url)
+
 db.Promise = global.Promise
 db.connect(DB_URL, {
     useMongoClient: true,

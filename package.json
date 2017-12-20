@@ -4,12 +4,13 @@
   "private": true,
   "scripts": {
     "start": "node bin/www",
-    "dev": "./node_modules/.bin/nodemon bin/www",
+    "dev": "cross-env NODE_ENV=dev ./node_modules/.bin/nodemon bin/www",
     "prd": "pm2 start bin/www",
-    "test": "mocha --recursive ",
-    "cov": "./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- --recursive -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
+    "test": "cross-env NODE_ENV=test mocha --recursive ",
+    "cov": "cross-env NODE_ENV=test ./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- --recursive -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
   },
   "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
     "debug": "^2.6.3",
     "jstransformer-markdown-it": "^2.0.0",
     "koa": "^2.2.0",
@@ -33,6 +34,7 @@
   "devDependencies": {
     "chai": "^4.1.2",
     "coveralls": "^3.0.0",
+    "cross-env": "^5.1.1",
     "fs": "^0.0.1-security",
     "istanbul": "^1.1.0-alpha.1",
     "mocha": "^4.0.1",
