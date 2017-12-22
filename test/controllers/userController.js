@@ -1,18 +1,22 @@
 const supertest = require('supertest'),
     app = require('../../app')
 const mongodb = require('../../config/mongodb-config.js')
+const dbInit = require('../lib/db')
+
 const cheerio = require('cheerio')
 
 let server = app.listen();
 const req = supertest.agent(server)
 
 describe('#test UserController', () => {
-    before(() => {
-
+    before(async () => {
+        await mongodb.connection.dropDatabase()
+        dbInit.insert()
     });
 
-    after(() => {
-        mongodb.disconnect();
+    after(async () => {
+        await mongodb.connection.dropDatabase()
+        mongodb.disconnect()
         server.close()
     });
 
@@ -38,12 +42,10 @@ describe('#test UserController', () => {
                         password: '123'
                     })
                     //to do
-                    .expect(200);
+                    .expect(302);
             });
         });
     });
-
-
 
     describe('#GET /logout', () => {
         it('#should return 200', async () => {
@@ -53,5 +55,4 @@ describe('#test UserController', () => {
                 .expect(302);
         });
     });
-
 });
