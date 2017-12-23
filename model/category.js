@@ -2,8 +2,11 @@ const mongodb = require('../config/mongodb-config.js')
 const Schema = mongodb.Schema
 
 let categoryItem = {
-    name: String,
-    
+  name: { type: String, unique: true },
+  updated: {
+    type: Date,
+    default: Date.now()
+  }
 }
 
 

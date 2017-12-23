@@ -1,6 +1,7 @@
 const User = require('./user.js')
 const Article = require('./article.js')
 const Category = require('./category.js')
+const CategoryController = require('../controllers/categoryController')
 const md5 = require('md5')
 
 //console.log(md5('202cb962ac59075b964b07152d234b70'))
@@ -104,6 +105,21 @@ function findArticleById() {
   console.log(user)
 }
 
-insertCategoryArticle()
+async function test() {
+  let category = new Category({
+    name: 'test'
+  })
+
+  category.save((err, res) => {
+    if (err) {
+      console.log("ERROR" + err)
+    } else {
+      console.log("RES " + res)
+    }
+  })
+}
+
+test()
+// insertCategoryArticle()
 // inset()
 //findArticleById()

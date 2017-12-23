@@ -1,4 +1,5 @@
 const Article = require('../model/article.js')
+const CategoryController = require('./categoryController')
 const md = require('markdown-it')()
 
 
@@ -39,11 +40,12 @@ const toCreateArticlePage = async (ctx, next) => {
     ctx.redirect('/login')
   }
 
-  console.log(ctx.session.userId)
-
+  let categories = await CategoryController.getAllCategories()
+  console.log(categories)
   await ctx.render('articles/create', {
     title,
-    articleFormPath:'create'
+    articleFormPath:'create',
+    categories: categories
   })
 }
 

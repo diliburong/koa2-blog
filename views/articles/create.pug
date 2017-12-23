@@ -6,11 +6,27 @@ block append head
 
 block content
   div.article-container
-    .container
-      include ./form.pug
+    .container.create-container
+      .row
+        .article-category-side.column.column-20
+          ul.category-list
+            each item in categories
+              li #{item.name}
+        .article-form.column.column-60
+          include ./form.pug
 
 
 block dynamicJs
   script(src='/js/showdown.min.js')
   script.
     var simplemde = new SimpleMDE({ element: document.getElementById("markdown-editor") });
+  script.
+    $(document).ready(function() {
+      $('.category-list li:first').addClass('active');
+
+      $('.category-list li').click(function(){
+        
+        $('.category-list .active').removeClass('active');
+        $(this).addClass('active');
+      })
+    });
