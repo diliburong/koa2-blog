@@ -4,7 +4,7 @@ const Category = require('./category.js')
 const CategoryController = require('../controllers/categoryController')
 const md5 = require('md5')
 
-//console.log(md5('202cb962ac59075b964b07152d234b70'))
+//console.logx(md5('202cb962ac59075b964b07152d234b70'))
 
 function inset() {
   let user = new User({

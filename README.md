@@ -48,3 +48,7 @@ npm install --save-dev cross-env
   }
 }
 ```
+
+### bluebird
+
+##### bluebird 的 `promisifyAll`方法会自动将挂载到`prototype`的方法添加默认`Async`后缀生成promise方法
