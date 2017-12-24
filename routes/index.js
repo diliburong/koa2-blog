@@ -1,5 +1,5 @@
 const router = require('koa-router')()
-const index = require('../controllers/index')
+const indexController = require('../controllers/indexController')
 const articleController = require('../controllers/articleController')
 const md = require('markdown-it')()
 var result = md.render('# markdown')
@@ -21,5 +21,7 @@ router.get('/test', async (ctx, next) => {
     
   })
 })
+
+router.get('/about', indexController.toAboutPage)
 
 module.exports = router

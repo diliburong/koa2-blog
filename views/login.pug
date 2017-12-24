@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  div.article-container
+  div.main-container
     form.login-form(action="/login" method="post")
       h2 Login
       input(type="hidden" name="_csrf" value=csrf)

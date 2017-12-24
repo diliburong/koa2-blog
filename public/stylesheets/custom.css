@@ -1,3 +1,17 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+body {
+    display: flex;
+    flex-direction: column;
+}
+.wrapper {
+    flex: 1 0 auto;
+}
+
+
+
 .navigation-title {
     margin-right: 5rem;
 }
@@ -9,7 +23,23 @@
     position: relative
 }
 
+.navigation .user {
+    padding-top: 1rem;
+    padding-bottom: .7rem;
+}
+
+.navigation .user:hover {
+    background: #e8eaec;
+}
+
+.open>.dropdown-menu {
+    display: block;
+}
+
 .dropdown-menu {
+    min-width: 12rem;
+    margin-top: .7rem;
+    position: absolute;
     font-size: 2rem;
     margin-left: 0;
     list-style: none;
@@ -22,6 +52,18 @@
 
 .dropdown-menu .dropdown-menu-item {
     list-style: none;
+    margin-bottom: 0;
+}
+
+.dropdown-menu .dropdown-menu-item:hover {
+    background: #f5f5f5;
+}
+
+.dropdown-menu .dropdown-menu-item a{
+    display: block;
+    padding: 15px 20px;
+    line-height: 20px;
+    white-space: nowrap;
 }
 
 .avatar {
@@ -29,7 +71,8 @@
     cursor: pointer;
     width: 3.5rem;
     height: 3.5rem;
-    margin-top: 1rem;
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
 }
 
 .avatar img {
@@ -112,10 +155,33 @@
     font-size: 18px;
 }
 
-.article-container {
+.main-container {
     padding-top: 10rem;
 }
 
+/* about page */
+.person-logo {
+    text-transform: uppercase;
+    text-align: center;
+    padding-top: 6rem;
+}
+
+.about-description {
+    text-align: center;
+    padding: 0rem 5rem 0rem;
+    font-style: italic;
+    font-weight: 600;
+    font-size: 1.8rem;
+}
+
+.button-vertical {
+    width: 13rem;
+    display: block;
+    margin: 1rem auto 2rem;
+    font-style: italic;
+}
+
+/* article-create page */
 .article-category-side {
     background: #8b8d9b;
     color: whitesmoke;
@@ -165,7 +231,7 @@
 
 
 
-.article-container .create-container {
+.main-container .create-container {
 
     max-width: 100%
 }
@@ -284,10 +350,13 @@
 }
 
 .footer {
+    flex: 0 0 auto;
     text-align: center;
     width: 98%;
     bottom: 0;
 }
+
+.fixed-bottom {position: fixed;bottom: 0;width:100%;}
 
 ::selection {
     background: #ff0;

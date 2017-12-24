@@ -15,30 +15,62 @@ html
             h1.title Stutter
           ul.navigation-list.float-left
             li.navigation-item
-              a(href="#" class=Utils.isActive('home', nav)).navigation-link Home
+              a(href="/" class=Utils.isActive('home', nav)).navigation-link Home
             li.navigation-item
               a(href="#" class=Utils.isActive('article', nav)).navigation-link Article
             li.navigation-item
-              a(href="#" class=Utils.isActive('about', nav)).navigation-link About
+              a(href="/about" class=Utils.isActive('about', nav)).navigation-link About
           ul.navigation-list.float-right
             - if(!isUserLogin)
               li.navigation-item-right
                 a(href="/login" class=Utils.isActive('login', nav)).navigation-link Login
             - else
               li.navigation-item-right
-                .dropdown
-                  a(href="/logout").avatar
-                    img.av(src="//upload.jianshu.io/users/upload_avatars/4998423/12ac3879-1262-410e-beef-684db0667e53.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/120/h/120", alt="")
-                  
-                ul.dropdown-menu
-                  li.dropdown-menu-item
-                    a(href="/logout") Logout
-                  li.dropdown-menu-item
-                    a(href="/") My Home
+                .user
+                  .dropdown
+                    a(href="#").avatar
+                      img.av(src="//upload.jianshu.io/users/upload_avatars/4998423/12ac3879-1262-410e-beef-684db0667e53.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/120/h/120", alt="")
+                    
+                  ul.dropdown-menu
+                    li.dropdown-menu-item
+                      a(href="/logout") Logout
+                    li.dropdown-menu-item
+                      a(href="/") My Home
       block content
   footer.footer
     p
       | Power by stutter   
       a(href="https://github.com/diliburong/koa2-blog") &nbsp © stutter
   script(src="/js/lib/jquery.js")
+  script.
+    //- $(function(){
+    //-   function footerPosition(){
+    //-     $('footer').removeClass('fixed-bottom');
+    //-     var contentHeight = document.body.scrollHeight;
+    //-     var winHeight = window.innerHeight;
+    //-     if(!(contentHeight > winHeight)) {
+    //-       $('footer').addClass('fixed-bottom');
+    //-     } else {
+    //-       $('footer').removeClass('fixed-bottom');
+    //-     }
+    //-   }
+    //-   footerPosition();
+    //-   $(window).resize(footerPosition);
+    //- });
+
+    $(document).ready(function() {
+      $('.user').mouseover(function(){
+        $('.user').addClass('open');
+      });
+      $('.user').mouseout(function(){
+        $('.user').removeClass('open');
+      });
+      $('.dropdown-menu').mouseover(function(){
+        $('.user').addClass('open');
+      });
+      $('.dropdown-menu').mouseout(function(){
+        $('.user').removeClass('open');
+      });
+    });
   block dynamicJs
+
