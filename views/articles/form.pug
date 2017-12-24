@@ -1,5 +1,6 @@
 form.note-form(action=articleFormPath method="post")
     input(type="hidden" name="_csrf" value=csrf)
+    input(type="hidden", name="categoryId")
     input#hidden-content(type="hidden" value=articleContent)
     input.title#intput-title(type="text" name="note_title" placeholder="Article Title" value=articleTitle)
     textarea#markdown-editor(name="content")

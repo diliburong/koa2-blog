@@ -7,7 +7,7 @@ const showArticle = async (ctx, next) => {
   let id = ctx.params.id
   let article = null
   try {
-    article = await Article.findById(id).exec()
+    article = await Article.findById(id).populate('category').exec()
   } catch (err) {
     ctx.throw(404)
   }
@@ -17,20 +17,20 @@ const showArticle = async (ctx, next) => {
     title,
     tag: article.tag,
     articleTitle: article.title,
+    category: article.category.name,
     result: md.render(article.content),
     nav: 'article'
   })
 }
 
 const showAllArticles = async (ctx, next) => {
-  let articles = await Article.find().exec()
+  let articles = await Article.find().populate('category').exec()
   const title = 'home'
   await ctx.render('index', {
     title,
     articles,
     nav: 'home'
   })
-
 }
 
 const toCreateArticlePage = async (ctx, next) => {
@@ -52,13 +52,15 @@ const toCreateArticlePage = async (ctx, next) => {
 const createArticle  = async (ctx, next) => {
   let noteTitle = ctx.request.body.note_title
   let text = ctx.request.body.content
+  let categoryId = ctx.request.body.categoryId
 
   let article = new Article({
     title: noteTitle,
     author: 'stutter',
     description: "",
     content: text,
-    tage: 'test'
+    tag: 'test',
+    category: categoryId
   })
 
   article.save().catch(err => {

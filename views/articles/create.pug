@@ -11,7 +11,7 @@ block content
         .article-category-side.column.column-20
           ul.category-list
             each item in categories
-              li #{item.name}
+              li(id=item.id) #{item.name}
         .article-form.column.column-60
           include ./form.pug
 
@@ -23,10 +23,11 @@ block dynamicJs
   script.
     $(document).ready(function() {
       $('.category-list li:first').addClass('active');
-
+      $('input[name="categoryId"]').val($('.category-list li:first').attr('id'));
       $('.category-list li').click(function(){
-        
         $('.category-list .active').removeClass('active');
         $(this).addClass('active');
+
+        $('input[name="category"]').val($(this).attr('id'));
       })
     });
