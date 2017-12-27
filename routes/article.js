@@ -14,11 +14,11 @@ var result = md.render('# markdown \n # 123')
 router.prefix('/article')
 
 
-router.get('/create', articleController.toCreateArticlePage);
-router.get('/:id', articleController.showArticle)
-router.get('/edit/:id', articleController.toEditArticlePage)
-router.post('/edit/:id', articleController.editArticle)
-
-router.post('/create', articleController.createArticle)
+router
+      .get('/create', articleController.toCreateArticlePage)
+      .get('/:id', articleController.showArticle)
+			.get('/edit/:id', articleController.toEditArticlePage)
+			.post('/edit/:id', articleController.editArticle)
+			.post('/create', articleController.createArticle)
 
 module.exports = router

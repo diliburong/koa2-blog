@@ -10,18 +10,17 @@ const userController = require('../controllers/userController')
 router.get('/bar', function (ctx, next) {
   ctx.body = 'this is a users/bar response'
 })
-
-+router.get('/json', async (ctx, next) => {
+    .get('/json', async (ctx, next) => {
     ctx.body = {
       title: 'koa2 json'
     }
   })
 
-router.get('/usertest', userController.test)
+    .get('/usertest', userController.test)
 
-router.get('/login', userController.login)
-router.post('/login', userController.logIn)
+    .get('/login', userController.login)
+    .post('/login', userController.logIn)
 
-router.get('/logout', userController.logOut)
+    .get('/logout', userController.logOut)
 
 module.exports = router

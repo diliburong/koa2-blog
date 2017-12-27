@@ -8,3 +8,4 @@ router.prefix('/category')
 // router.get('/categories', categoryController.getAllCategories)
 router.post('/create', categoryController.createCategory)
 
+module.exports = router
