@@ -6,14 +6,16 @@ const getAllCategories = async () => {
     return categories;
 }
 
-const createCategory = async(ctx) => {
+const createCategory = async(ctx, next) => {
     let category = new Category({
-        name: ctx.require.body.categoryName
+
+        name: ctx.request.body.newcategoryName
     })
 
     let result = await category.save().catch(err => {
         ctx.throw(500, 'server error')
     })
+    ctx.status = 200
     return result
 }
 

@@ -182,9 +182,49 @@ body {
 }
 
 /* article-create page */
+
+.new-category-add {
+    padding: 0 1.1rem;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    cursor: pointer;
+}
+
+.new-category-add span {
+    margin-left: .5rem;
+}
+
+.new-category-form {
+    -webkit-transition: all .3s ease-out;
+    -o-transition: all .3s ease-out;
+    transition: all .3s ease-out;
+    opacity: 1;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.new-category-section .hidden {
+    opacity: 0;
+    height: 0;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+
+
+
+
+
+.btn-small {
+    letter-spacing: .0rem;
+    height: 3.0rem;
+    padding: 0 1.1rem;
+    line-height: 3.0rem;
+}
+
 .article-category-side {
-    background: #8b8d9b;
-    color: whitesmoke;
+    background: #f4f5f6;
+    color: #8b8d9b
 }
 .article-category-side ul {
     list-style: none;
@@ -277,6 +317,10 @@ body {
     margin-bottom: 0px;
     border-bottom-left-radius: 0px !important;
     border-bottom-right-radius: 0px !important;
+}
+
+.CodeMirror-scroll {
+    cursor: text;
 }
 
 .note-form input[type='text']:focus {
