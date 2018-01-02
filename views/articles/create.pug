@@ -36,11 +36,11 @@ block dynamicJs
     $(document).ready(function() {
       $('.category-list li:first').addClass('active');
       $('input[name="categoryId"]').val($('.category-list li:first').attr('id'));
-      $('.category-list li').click(function(){
+      $('.category-list').on('click',' li', function(){
         $('.category-list .active').removeClass('active');
         $(this).addClass('active');
 
-        $('input[name="category"]').val($(this).attr('id'));
+        $('input[name="categoryId"]').val($(this).attr('id'));
       })
 
       // add category show
@@ -48,8 +48,6 @@ block dynamicJs
         $('.new-category-form').removeClass('hidden');
 
         $('#btn-create').click(function(){
-          
-
           // validate
           let newcategoryName = $('input[name="newCategoryName"]').val();
           let csrf = $('input[name="_csrf"]').val()
@@ -63,10 +61,11 @@ block dynamicJs
               _csrf: csrf
             },
             success: function(data) {
-              if(date == null) {
+              if(data == null) {
                 alert('server error');
               }
-              alert('123');
+              //- alert(data.result.categoryId)
+              $('.category-list').append('<li id="' + data.result.categoryId + '">' + data.result.categoryName + '</li>')
             }
           })
         });

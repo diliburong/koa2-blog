@@ -1,7 +1,6 @@
 const router = require('koa-router')()
 const userController = require('../controllers/userController')
-
-//router.prefix('/users')
+const validate = require('koa2-validation')
 
 // router.get('/', function (ctx, next) {
 //   ctx.body = 'this is a users response you!'
@@ -10,16 +9,16 @@ const userController = require('../controllers/userController')
 router.get('/bar', function (ctx, next) {
   ctx.body = 'this is a users/bar response'
 })
-    .get('/json', async (ctx, next) => {
-    ctx.body = {
-      title: 'koa2 json'
-    }
-  })
+  //   .get('/json', async (ctx, next) => {
+  //   ctx.body = {
+  //     title: 'koa2 json'
+  //   }
+  // })
 
     .get('/usertest', userController.test)
 
     .get('/login', userController.login)
-    .post('/login', userController.logIn)
+    .post('/login', validate(userController.v.logIn), userController.logIn)
 
     .get('/logout', userController.logOut)
 

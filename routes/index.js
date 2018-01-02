@@ -17,7 +17,8 @@ router.get('/string', async (ctx, next) => {
   ctx.body = result
 })
 
-router.get('/json', async (ctx, next) => {
+router.post('/json', async (ctx, next) => {
+  console.log('123')
   ctx.body = {
     title: 'koa2 json'
   }

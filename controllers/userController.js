@@ -1,5 +1,10 @@
 const User = require('../model/user.js')
 const md5 = require('md5')
+const Joi = require('joi')
+
+//validation
+const v = {};
+
 
 const login = async (ctx, next) => {
     const locals = {
@@ -12,6 +17,13 @@ const login = async (ctx, next) => {
       return
     }
     await ctx.render('login', locals);
+}
+
+v.logIn = {
+  body: {
+    username: Joi.string().required(),
+    password: Joi.string().required()
+  }
 }
 
 const logIn = async (ctx, next) => {
@@ -33,6 +45,7 @@ const logIn = async (ctx, next) => {
     await ctx.render('login', locals)
   }
 }
+
 
 const toRegister = async (ctx, next) => {
   const locals = {
@@ -96,5 +109,6 @@ module.exports = {
   login,
   logIn,
   logOut,
-  test
+  test,
+  v
 }

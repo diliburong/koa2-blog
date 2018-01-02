@@ -44,20 +44,20 @@ html
       a(href="https://github.com/diliburong/koa2-blog") &nbsp © stutter
   script(src="/js/lib/jquery.js")
   script.
-    //- $(function(){
-    //-   function footerPosition(){
-    //-     $('footer').removeClass('fixed-bottom');
-    //-     var contentHeight = document.body.scrollHeight;
-    //-     var winHeight = window.innerHeight;
-    //-     if(!(contentHeight > winHeight)) {
-    //-       $('footer').addClass('fixed-bottom');
-    //-     } else {
-    //-       $('footer').removeClass('fixed-bottom');
-    //-     }
-    //-   }
-    //-   footerPosition();
-    //-   $(window).resize(footerPosition);
-    //- });
+    $(function(){
+      function footerPosition(){
+        $('footer').removeClass('fixed-bottom');
+        var contentHeight = document.body.scrollHeight;
+        var winHeight = window.innerHeight;
+        if(!(contentHeight > winHeight)) {
+          $('footer').addClass('fixed-bottom');
+        } else {
+          $('footer').removeClass('fixed-bottom');
+        }
+      }
+      footerPosition();
+      $(window).resize(footerPosition);
+    });
 
     $(document).ready(function() {
       $('.user').mouseover(function(){

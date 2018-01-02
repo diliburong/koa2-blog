@@ -6,12 +6,14 @@
     "start": "node bin/www",
     "dev": "cross-env NODE_ENV=dev ./node_modules/.bin/nodemon bin/www",
     "prd": "pm2 start bin/www",
+    "prdStop": "pm2 stop bin/www",
     "test": "cross-env NODE_ENV=test mocha --recursive ",
     "cov": "cross-env NODE_ENV=test ./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- --recursive -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
   },
   "dependencies": {
     "cheerio": "^1.0.0-rc.2",
     "debug": "^2.6.3",
+    "joi": "^13.0.2",
     "jquery": "^3.2.1",
     "jstransformer-markdown-it": "^2.0.0",
     "koa": "^2.2.0",
@@ -26,10 +28,12 @@
     "koa-session": "^5.5.1",
     "koa-static": "^3.0.0",
     "koa-views": "^5.2.1",
+    "koa2-validation": "^0.1.0",
     "markdown-it": "^8.4.0",
     "markdown-it-editor": "^1.1.4",
     "md5": "^2.2.1",
     "mongoose": "^4.13.6",
+    "pm2": "^2.9.1",
     "pug": "^2.0.0-rc.1"
   },
   "devDependencies": {
