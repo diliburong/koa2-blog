@@ -119,7 +119,18 @@ async function test() {
   })
 }
 
-test()
+function updated(params) {
+  let updateStr = {
+    title: 'Basic Server Side Rendering with Vue.js and Express',
+  }
+
+  Article.findByIdAndUpdate('5a4ba2050b01e611ec8ad977', updateStr).exec((err,res) => {
+    console.log(res)
+  })
+}
+
+updated()
+// test()
 // insertCategoryArticle()
 // inset()
 //findArticleById()

@@ -44,7 +44,7 @@ const toCreateArticlePage = async (ctx, next) => {
   console.log(categories)
   await ctx.render('articles/create', {
     title,
-    articleFormPath:'create',
+    articleFormPath: 'create',
     categories: categories
   })
 }
@@ -78,12 +78,12 @@ const toEditArticlePage = async (ctx, next) => {
     ctx.throw(404)
   }
   const title = 'Edit Article'
-  console.log(article)
   await ctx.render('articles/edit', {
     title,
     articleTitle: article.title,
     articleContent: article.content,
-    nav: 'article'
+    nav: 'article',
+    articleFormPath: article._id
   })
 }
 
@@ -99,7 +99,8 @@ const editArticle = async (ctx, next) => {
   }
 
   try {
-    Article.findByIdAndUpdate(id, updateStr)
+    await Article.findByIdAndUpdate(id, updateStr).exec()
+    ctx.redirect('/article/' + id)
   } catch (error) {
     ctx.throw(404)
   }

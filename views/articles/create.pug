@@ -30,7 +30,10 @@ block dynamicJs
   script.
     var simplemde = new SimpleMDE({ 
                         element: document.getElementById("markdown-editor"),
-                        autoDownloadFontAwesome: false
+                        autoDownloadFontAwesome: false,
+                        renderingConfig:{
+                          codeSyntaxHighlighting: true
+                          }
                         });
   script.
     $(document).ready(function() {

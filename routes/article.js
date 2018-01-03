@@ -15,10 +15,10 @@ router.prefix('/article')
 
 
 router
-      .get('/create', articleController.toCreateArticlePage)
-      .get('/:id', articleController.showArticle)
-			.get('/edit/:id', articleController.toEditArticlePage)
-			.post('/edit/:id', articleController.editArticle)
-			.post('/create', articleController.createArticle)
+	.get('/create', articleController.toCreateArticlePage)
+	.get('/:id', articleController.showArticle)
+	.get('/edit/:id', articleController.toEditArticlePage)
+	.post('/edit/:id', articleController.editArticle)
+	.post('/create', articleController.createArticle)
 
 module.exports = router

@@ -12,5 +12,11 @@ block content
 block dynamicJs
   script(src='/js/showdown.min.js')
   script.
-    var simplemde = new SimpleMDE({ element: document.getElementById("markdown-editor") });
+        var simplemde = new SimpleMDE({ 
+                        element: document.getElementById("markdown-editor"),
+                        autoDownloadFontAwesome: false,
+                        renderingConfig:{
+                          codeSyntaxHighlighting: true
+                          }
+                        });
     simplemde.value(document.getElementById("hidden-content").value);
