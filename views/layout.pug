@@ -40,6 +40,7 @@ html
                     li.dropdown-menu-item
                       a(href="/") My Home
       block content
+      .top.top-active|  ↑
   footer.footer
     p
       | Power by stutter   
@@ -75,5 +76,29 @@ html
         $('.user').removeClass('open');
       });
     });
+
+    $(document).ready(function() {
+      $('.top').click(function() {
+        smoothscroll()
+      })
+    })
+
+    function toTop() {
+      var scrollToTop = setInterval(function() {  
+        var pos = window.pageYOffset;  
+        if ( pos > 0 ) {  
+            window.scrollTo( 0, pos - 20 ); // how far to scroll on each step  
+          } else {  
+            window.clearInterval( scrollToTop );  
+          }  
+      }, 2); // how fast to scroll (this equals roughly 60 fps)  
+    }
+    function smoothscroll(){  
+        var currentScroll = document.documentElement.scrollTop || document.body.scrollTop;  
+        if (currentScroll > 0) {  
+            window.requestAnimationFrame(smoothscroll);  
+            window.scrollTo (0,currentScroll - (currentScroll/5));  
+        }  
+    }
   block dynamicJs
 
