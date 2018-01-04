@@ -40,7 +40,7 @@ html
                     li.dropdown-menu-item
                       a(href="/") My Home
       block content
-      .top.top-active|  ↑
+      .top|  ↑
   footer.footer
     p
       | Power by stutter   
@@ -78,6 +78,15 @@ html
     });
 
     $(document).ready(function() {
+      $(window).scroll(function() {
+        if (window.scrollY < 1400) {
+          $('.top').removeClass('top-active')
+        }
+        else if (window.scrollY > 1400) {
+          $('.top').addClass('top-active')
+        }
+      });
+
       $('.top').click(function() {
         smoothscroll()
       })

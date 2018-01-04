@@ -36,12 +36,7 @@ const showAllArticles = async (ctx, next) => {
 const toCreateArticlePage = async (ctx, next) => {
   const title = 'Create Article'
 
-  if (!ctx.session.userId) {
-    ctx.redirect('/login')
-  }
-
   let categories = await CategoryController.getAllCategories()
-  console.log(categories)
   await ctx.render('articles/create', {
     title,
     articleFormPath: 'create',
@@ -63,9 +58,11 @@ const createArticle  = async (ctx, next) => {
     category: categoryId
   })
 
-  article.save().catch(err => {
+  try {
+    await article.save()
+  } catch (error) {
     ctx.throw(500, 'server error')
-  })
+  }
   ctx.redirect('/article/' + article.id)
 }
 
