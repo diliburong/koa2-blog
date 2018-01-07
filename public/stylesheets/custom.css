@@ -13,7 +13,23 @@ ul {
     flex: 1 0 auto;
 }
 
+.alert {
+    padding: 15px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    position: fixed;
+    z-index: 99;
+    top: 48%;
+    animation: tracking-in-expand-fwd-bottom 1s 0s 1 both;
+}
 
+
+
+.alert-warning {
+    color: #8a6d3b;
+    background-color: #fcf8e3;
+    border-color: #faebcc;
+}
 
 .navigation-title {
     margin-right: 5rem;
@@ -117,6 +133,12 @@ ul {
     visibility: visible; 
 }
 
+.header {
+    /* background-image: url('../img/dca9c823c49caf81eb0712128040696a_300.jpg'); */
+    background-image: url('../img/a0e5b54ce3b11b6c4e050ef49af454e6__image=124.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 
 .article-item {
     margin-bottom: 6rem;
@@ -275,7 +297,7 @@ div.top:hover {
     padding: 0 1rem;
 }
 
-.article-category-side ul li {
+.article-category-side .category-list .category-item{
     cursor: pointer;
     height: 3rem; 
     margin-bottom: 0;
@@ -283,7 +305,7 @@ div.top:hover {
     position: relative;
 }
 
-.article-category-side ul .active:before{
+.article-category-side .category-list .active:before{
     content: "";
     position: absolute;
     left: -10px;
@@ -294,12 +316,12 @@ div.top:hover {
     visibility: visible; 
 }
 
-.article-category-side ul li:hover:before{
+.article-category-side .category-list .category-item:hover:before{
     visibility: visible;
     transform: scaleY(1);
 }
 
-.article-category-side ul li:before {
+.category-item:before {
     content: "";
     position: absolute;
     left: -10px;
@@ -311,6 +333,37 @@ div.top:hover {
     -webkit-transition: .4s ease-in-out;
     -moz-transition: .4s ease-in-out;
     transition: .4s ease-in-out;
+}
+
+.category-list .edit-group {
+    float: right;
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+}
+
+.edit-group .edit-menu {
+    display: none;
+}
+
+.edit-group ul {
+    position: absolute;
+    z-index: 99;
+    box-shadow: 0 5px 10px rgba(0,0,0,.2);
+    margin: 0;
+    padding: 0;
+    right: -2px;
+    background-color: #fff;
+}
+
+ul .category-edit-item {
+    padding: 10px 20px;
+    white-space: nowrap;
+    margin: 0;
+}
+
+ul .category-edit-item i{
+    margin-right: 5px;
 }
 
 
@@ -352,6 +405,12 @@ div.top:hover {
 .login-form {
     width: 20em;
     margin: auto;
+}
+
+
+
+.login-btn{
+    width: 100%;
 }
 
 #intput-title {

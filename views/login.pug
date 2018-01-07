@@ -3,8 +3,16 @@ extends layout
 block content
   div.main-container
     form.login-form(action="/login" method="post")
+      - var messages = flashMessage && flashMessage.messages
+      - if (messages)
+        - var messageKeys = Object.keys(messages)
+        each messageKey in messageKeys
+          .alert(class=`alert-${messageKey}`)
+            = messages[messageKey]
+          script.
+            $('.alert').delay(2000).fadeOut('slow')
       h2 Login
       input(type="hidden" name="_csrf" value=csrf)
       input(type="text", name="username" placeholder="User Name")
       input(type="password", name="password" placeholder="Password")
-      button(type="submit") Login
+      button.login-btn(type="submit") Login

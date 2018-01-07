@@ -16,12 +16,12 @@
 
 .header {
     background-color: #f4f5f6;
-    padding-top: 1rem
+    /* padding-top: 1rem */
 }
 
 @media (min-width:40rem) {
     .header {
-        padding-top: 5rem
+        margin-top: 5rem
     }
 }
 

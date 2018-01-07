@@ -20,7 +20,17 @@ block content
               button.button.button-clear.btn-small#btn-cancel Cancel
           ul.category-list
             each item in categories
-              li(id=item.id) #{item.name}
+              li(id=item.id).category-item #{item.name}
+                .edit-group
+                  i.fa.fa-gear
+                  .edit-menu
+                    ul
+                      li.category-edit-item
+                        i.fa.fa-pencil-square
+                        | Edit Category
+                      li.category-edit-item
+                        i.fa.fa-trash
+                        | Delete Category
         .article-form.column.column-60
           include ./form.pug
 
