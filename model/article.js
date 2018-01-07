@@ -8,6 +8,10 @@ let arcitleItem = {
   description: String,
   content: String,
   tag: String,
+  created:{
+    type: Date,
+    default: Date.now()
+  },
   updated: {
     type: Date,
     default: Date.now()

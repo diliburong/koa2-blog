@@ -1,11 +1,13 @@
 const Article = require('../model/article.js')
 const CategoryController = require('./categoryController')
 const md = require('markdown-it')()
+const moment = require('moment');
 
 
 const showArticle = async (ctx, next) => {
   let id = ctx.params.id
   let article = null
+  
   try {
     article = await Article.findById(id).populate('category').exec()
   } catch (err) {
@@ -26,6 +28,11 @@ const showArticle = async (ctx, next) => {
 const showAllArticles = async (ctx, next) => {
   let articles = await Article.find().populate('category').exec()
   const title = 'home'
+  // format time
+  articles.forEach((item) => {
+    item.createdTime = moment(item.created).format('MMMM YYYY')
+  })
+
   await ctx.render('index', {
     title,
     articles,
