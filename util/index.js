@@ -7,3 +7,7 @@ exports.isActive = function (action, param) {
 	}
 	return active
 }
+
+// exports.currentCategory = function (action) {
+	
+// }

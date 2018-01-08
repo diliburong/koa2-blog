@@ -7,36 +7,10 @@ block append head
 block content
   div.main-container
     .container.create-container
-      .row
-        .article-category-side.column.column-20
-          .new-category-section
-            .new-category-add
-              i.fa.fa-plus
-              span New create
-            .new-category-form.hidden
-              input(type="hidden" name="_csrf" value=csrf)
-              input(type="text" placeholder="Enter the new Category Name" name="newCategoryName")
-              button.button.button-outline.btn-small#btn-create Create
-              button.button.button-clear.btn-small#btn-cancel Cancel
-          ul.category-list
-            each item in categories
-              li(id=item.id).category-item #{item.name}
-                .edit-group
-                  i.fa.fa-gear
-                  .edit-menu
-                    ul
-                      li.category-edit-item
-                        i.fa.fa-pencil-square
-                        | Edit Category
-                      li.category-edit-item
-                        i.fa.fa-trash
-                        | Delete Category
-        .article-form.column.column-60
-          include ./form.pug
+      include ./form.pug
 
 
 block dynamicJs
-  script(src='/js/showdown.min.js')
   script.
     var simplemde = new SimpleMDE({ 
                         element: document.getElementById("markdown-editor"),
@@ -45,47 +19,4 @@ block dynamicJs
                           codeSyntaxHighlighting: true
                           }
                         });
-  script.
-    $(document).ready(function() {
-      $('.category-list li:first').addClass('active');
-      $('input[name="categoryId"]').val($('.category-list li:first').attr('id'));
-      $('.category-list').on('click',' li', function(){
-        $('.category-list .active').removeClass('active');
-        $(this).addClass('active');
-
-        $('input[name="categoryId"]').val($(this).attr('id'));
-      })
-
-      // add category show
-      $('.new-category-add').click(function(){
-        $('.new-category-form').removeClass('hidden');
-
-        $('#btn-create').click(function(){
-          // validate
-          let newcategoryName = $('input[name="newCategoryName"]').val();
-          let csrf = $('input[name="_csrf"]').val()
-          $.ajax({
-            type: 'post',
-            url: '/category/create',
-            cache: false,
-            dataType: 'json',
-            data: {
-              newcategoryName: newcategoryName,
-              _csrf: csrf
-            },
-            success: function(data) {
-              if(data == null) {
-                alert('server error');
-              }
-              //- alert(data.result.categoryId)
-              $('.category-list').append('<li id="' + data.result.categoryId + '">' + data.result.categoryName + '</li>')
-            }
-          })
-        });
-
-
-        $('#btn-cancel').click(function(){
-          $('.new-category-form').addClass('hidden');
-        });
-      })
-    });
+  script(src="/js/article.js")

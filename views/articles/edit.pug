@@ -6,11 +6,10 @@ block append head
 
 block content
   div.main-container
-    .container
+    .container.create-container
       include ./form.pug
 
 block dynamicJs
-  script(src='/js/showdown.min.js')
   script.
         var simplemde = new SimpleMDE({ 
                         element: document.getElementById("markdown-editor"),
@@ -20,3 +19,4 @@ block dynamicJs
                           }
                         });
     simplemde.value(document.getElementById("hidden-content").value);
+  script(src="/js/article.js")

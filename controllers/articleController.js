@@ -46,6 +46,7 @@ const toCreateArticlePage = async (ctx, next) => {
   let categories = await CategoryController.getAllCategories()
   await ctx.render('articles/create', {
     title,
+    nav: 'article',
     articleFormPath: 'create',
     categories: categories
   })
@@ -75,9 +76,10 @@ const createArticle  = async (ctx, next) => {
 
 const toEditArticlePage = async (ctx, next) => {
   let id = ctx.params.id
+  let categories = await CategoryController.getAllCategories()
   let article
   try {
-    article = await Article.findById(id)
+    article = await Article.findById(id).populate('category').exec()
   } catch (error) {
     ctx.throw(404)
   }
@@ -87,7 +89,9 @@ const toEditArticlePage = async (ctx, next) => {
     articleTitle: article.title,
     articleContent: article.content,
     nav: 'article',
-    articleFormPath: article._id
+    articleFormPath: article._id,
+    categories: categories,
+    category: article.category
   })
 }
 

@@ -387,6 +387,16 @@ ul .category-edit-item i{
     margin-bottom: .5rem;
 }
 
+.article-author {
+    border: 2px solid rgba(220,57,88,0.15);
+    border-radius: 6px;
+    padding: .3rem .75rem;
+    font-size: .8rem;
+    white-space: nowrap;
+    margin-top: .3rem;
+    display: inline-block;
+}
+
 .title-wrapper .category{
     color: #FF6600;
     font-size: 2.5rem;
@@ -447,6 +457,9 @@ ul .category-edit-item i{
 .login-form>input{animation:tracking-in-expand 1s 0s 1 both}
 .login-form>h2{animation:tracking-in-expand-fwd-bottom 1s 0s 1 both}
 
+/* .animation-container{animation:fadeInDownBig 2s 0s 1 both}
+.header{animation:fadeInDownBig 2s 0s 1 both} */
+
 /* export keyframes  */
 @Keyframes tracking-in-expand-fwd {
   0% {
@@ -486,6 +499,17 @@ ul .category-edit-item i{
   to {
     transform: translateZ(0) translateY(0);
     opacity: 1
+  }
+}
+@keyframes fadeInDownBig {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -2000px, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
   }
 }
   
