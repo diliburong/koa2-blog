@@ -1,6 +1,6 @@
 $(document).ready(function () {
   // add active
-  $('.category-list li:first').addClass('active');
+  // $('.category-list li:first').addClass('active');
 
   $('input[name="categoryId"]').val($('.category-list li:first').attr('id'));
   $('.category-list').on('click', ' li', function () {

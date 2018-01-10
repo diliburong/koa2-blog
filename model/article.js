@@ -1,7 +1,6 @@
 const mongodb = require('../config/mongodb-config.js')
 const Schema = mongodb.Schema
 
-
 let arcitleItem = {
   title: String,
   author: String,
@@ -22,6 +21,10 @@ let arcitleItem = {
   category:{
     type: Schema.Types.ObjectId,
     ref:'category'
+  },
+  isDeleted: {
+    type: Number,
+    default: 0
   }
 }
 

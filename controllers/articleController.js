@@ -48,7 +48,8 @@ const toCreateArticlePage = async (ctx, next) => {
     title,
     nav: 'article',
     articleFormPath: 'create',
-    categories: categories
+    categories: categories,
+    category: categories[0]
   })
 }
 
