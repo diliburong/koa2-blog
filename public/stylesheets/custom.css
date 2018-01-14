@@ -31,8 +31,20 @@ ul {
     border-color: #faebcc;
 }
 
-.navigation-title {
+/* .navigation-title {
     margin-right: 5rem;
+} */
+
+@media only screen and (min-width: 375px){
+    .navigation-title {
+        margin-right: 2rem;
+    }
+}
+
+@media only screen and (min-width: 768px){
+    .navigation-title {
+        margin-right: 5rem;
+    }
 }
 
 .navigation .navigation-item-right {
@@ -383,10 +395,16 @@ ul .category-edit-item i{
     color: #515151;
     text-align: center;
     font-weight: 500;
-    padding: 0 15rem;
     font-size: 5rem;
+    padding: 0 15rem;
     /* letter-spacing: .1rem; */
     margin-bottom: .5rem;
+}
+
+@media only screen and (max-width: 414px) {
+    .article-detail-title {
+        padding: 0;
+    }
 }
 
 .article-author {

@@ -107,9 +107,9 @@
    
 }
 
-@media (min-width:80rem) {
-    .navigation .navigation-list {
-       
+@media only screen and (max-width:414px) {
+    .float-right {
+       display: none;
     }
 }
 
