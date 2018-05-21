@@ -15,8 +15,6 @@ router.get('/bar', function (ctx, next) {
   //   }
   // })
 
-    .get('/usertest', userController.test)
-
     .get('/login', userController.login)
     .post('/login', validate(userController.v.logIn), userController.logIn)
 

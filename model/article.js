@@ -25,7 +25,8 @@ let arcitleItem = {
   isDeleted: {
     type: Number,
     default: 0
-  }
+  },
+  createdTime: String
 }
 
 

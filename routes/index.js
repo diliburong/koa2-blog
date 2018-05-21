@@ -7,18 +7,26 @@ const article = require('./article')
 const md = require('markdown-it')()
 var result = md.render('# markdown')
 
+// const api = require('./api/index')
+// const apiArticle = require('./api/articles')
+
 
 router.use(users.routes(), users.allowedMethods())
 router.use(category.routes(), category.allowedMethods())
 router.use(article.routes(), article.allowedMethods())
+
+
+// router.use(api.routes(), api.allowedMethods())
+
 router.get('/', articleController.showAllArticles)
 
-router.get('/string', async (ctx, next) => {
-  ctx.body = result
+router.get('/api/string', async (ctx, next) => {
+  ctx.body = {
+    title: 'koa2 json'
+  }
 })
 
 router.post('/json', async (ctx, next) => {
-  console.log('123')
   ctx.body = {
     title: 'koa2 json'
   }

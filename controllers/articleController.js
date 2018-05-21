@@ -115,11 +115,53 @@ const editArticle = async (ctx, next) => {
   }
 }
 
+// api
+
+const getAllArticle = async (ctx, next) => {
+  let articles = await Article.find().populate('category').exec()
+  // const title = 'home'
+  // format time
+  // articles.forEach((item) => {
+  // })
+
+  for (const item of articles) {
+    item.createdTime = moment(item.created).format('MMMM YYYY')
+  }
+
+  ctx.body = {
+    'articles': articles
+  }
+}
+
+const getArticleById = async(ctx, next) =>{
+  let id = ctx.params.id
+  let article = null
+
+  let status = 200
+
+  try {
+    article = await Article.findById(id).populate('category').exec()
+  } catch (err) {
+    console.log('not found')
+    status = 404
+    // ctx.throw(404)
+  }
+
+  ctx.body = {
+    status,
+    article
+  }
+}
+
 module.exports = {
   showArticle,
   showAllArticles,
   toCreateArticlePage,
   createArticle,
   toEditArticlePage,
-  editArticle
+  editArticle,
+
+  // api
+  getAllArticle,
+  getArticleById
 }

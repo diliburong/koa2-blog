@@ -8,11 +8,12 @@ const logger = require('koa-logger')
 const session = require('koa-session')
 const flashMessage = require('./middleware/flashMessage.js')
 const CSRF = require('koa-csrf')
+const cors = require('koa2-cors')
+const jwt = require('koa-jwt')
+const config = require('./config/index')
 
-const index = require('./routes/index')
-const users = require('./routes/users')
-const article = require('./routes/article')
-const teset = require('markdown-it-editor')
+const router = require('./routes/index')
+const api = require('./routes/api/index')
 
 const helper = require('./middleware/index.js')
 
@@ -36,6 +37,21 @@ app.use(views(__dirname + '/views', {
   extension: 'pug'
 }))
 
+// Custom 401 handling if you don't want to expose koa-jwt errors to users
+app.use(function (ctx, next) {
+  return next().catch((err) => {
+    if (401 == err.status) {
+      ctx.status = 401;
+      ctx.body = 'Protected resource, use Authorization header to get access\n';
+    } else {
+      throw err;
+    }
+  });
+});
+
+
+
+
 // csrf
 app.use(new CSRF({
   invalidSessionSecretMessage: 'Invalid session secret',
@@ -58,8 +74,37 @@ app.use(async (ctx, next) => {
   console.log(`${ctx.method} ${ctx.url} - ${ms}ms`)
 })
 
+//
+app.use(cors({
+  origin: function (ctx) {
+      return "*"; // 允许来自所有域名请求
+  },
+  exposeHeaders: ['WWW-Authenticate', 'Server-Authorization'],
+  maxAge: 5,
+  credentials: true,
+  allowMethods: ['GET', 'POST', 'DELETE'],
+  allowHeaders: ['Content-Type', 'Authorization', 'Accept'],
+}))
+
+
 // routes
-app.use(index.routes(), index.allowedMethods())
+
+router.use(
+  '/api',
+  jwt({
+    secret: config.jwt_secret
+  }).unless({
+    path: [/^\/api\/login/]
+  }),
+  api.routes()
+)
+
+app.use(router.routes(), router.allowedMethods())
+// app.use(api.routes(), api.allowedMethods())
+
+// jwt
+
+
 
 // error-handling
 app.on('error', (err, ctx) => {

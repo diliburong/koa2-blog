@@ -1,6 +1,7 @@
 const User = require('../model/user.js')
 const md5 = require('md5')
 const Joi = require('joi')
+const jwt = require ('jsonwebtoken');
 
 //validation
 const v = {};
@@ -103,6 +104,36 @@ const test = async (ctx, next) => {
       console.log(res.name)
   })
   ctx.body = name
+}
+
+
+
+///  api
+
+const apiLogin = async (ctx, next) => {
+  const body = ctx.request.body
+  const username = body.username
+  const password = body.password
+  let user = await User.findOne({
+    'username': username
+  }).exec()
+
+  if (user && md5(password) === user.password) {
+    // ctx.session.userId = user._id
+    // ctx.status = 302
+    // ctx.flashMessage.notice = 'Log In Successfully!'
+    // ctx.redirect('/')
+    const token = jwt.sign({
+      
+
+    })
+
+  } else {
+    const locals = { nav: 'signIn' }
+    ctx.flashMessage.warning = 'User name or Password Error.'
+    await ctx.render('login', locals)
+  }
+
 }
 
 module.exports = {
