@@ -53,6 +53,8 @@ const toCreateArticlePage = async (ctx, next) => {
   })
 }
 
+
+
 const createArticle  = async (ctx, next) => {
   let noteTitle = ctx.request.body.note_title
   let text = ctx.request.body.content
@@ -153,6 +155,36 @@ const getArticleById = async(ctx, next) =>{
   }
 }
 
+const apiCreateArticle = async (ctx, next) => {
+  let noteTitle = ctx.request.body.note_title
+  let text = ctx.request.body.content
+  let categoryId = ctx.request.body.categoryId
+
+  let article = new Article({
+    title: noteTitle,
+    author: 'stutter',
+    description: "",
+    content: text,
+    tag: 'test',
+    category: categoryId
+  })
+
+  try {
+    await article.save()
+  } catch (error) {
+    ctx.body = {
+      status: 400,
+      message: '服务端错误'
+    }
+  }
+
+  ctx.body = {
+    status: 200,
+    message: '创建成功',
+    articleId: article.id
+  }
+}
+
 module.exports = {
   showArticle,
   showAllArticles,
@@ -163,5 +195,6 @@ module.exports = {
 
   // api
   getAllArticle,
-  getArticleById
+  getArticleById,
+  apiCreateArticle
 }

@@ -3,7 +3,7 @@ const Category = require('../model/category')
 
 const getAllCategories = async () => {
   let categories = await Category.find().exec()
-  return categories;
+  return categories
 }
 
 const createCategory = async (ctx, next) => {
@@ -23,8 +23,20 @@ const createCategory = async (ctx, next) => {
   }
 }
 
+// api
+
+const apiGetAllCategories = async (ctx, next) => {
+  let categories = await Category.find().exec()
+
+  ctx.body = {
+    status: 200,
+    categories
+  }
+
+}
 
 module.exports = {
   getAllCategories,
-  createCategory
+  createCategory,
+  apiGetAllCategories
 }

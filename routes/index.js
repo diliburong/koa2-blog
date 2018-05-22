@@ -20,11 +20,11 @@ router.use(article.routes(), article.allowedMethods())
 
 router.get('/', articleController.showAllArticles)
 
-router.get('/api/string', async (ctx, next) => {
-  ctx.body = {
-    title: 'koa2 json'
-  }
-})
+// router.get('/api/string', async (ctx, next) => {
+//   ctx.body = {
+//     title: 'koa2 json'
+//   }
+// })
 
 router.post('/json', async (ctx, next) => {
   ctx.body = {

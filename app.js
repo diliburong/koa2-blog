@@ -7,10 +7,13 @@ const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
 const session = require('koa-session')
 const flashMessage = require('./middleware/flashMessage.js')
+const verfiy = require('./middleware/verfiy.js')
+
 const CSRF = require('koa-csrf')
 const cors = require('koa2-cors')
 const jwt = require('koa-jwt')
 const config = require('./config/index')
+
 
 const router = require('./routes/index')
 const api = require('./routes/api/index')
@@ -25,6 +28,7 @@ onerror(app)
 app.keys = ['123']
 app.use(session(app))
 app.use(flashMessage)
+// app.use(verfiy)
 app.use(bodyparser({
   enableTypes:['json', 'form', 'text']
 }))
@@ -42,7 +46,10 @@ app.use(function (ctx, next) {
   return next().catch((err) => {
     if (401 == err.status) {
       ctx.status = 401;
-      ctx.body = 'Protected resource, use Authorization header to get access\n';
+      ctx.body = {
+        status: 401,
+        messge: 'Protected resource, use Authorization header to get access\n'
+      }
     } else {
       throw err;
     }
@@ -52,15 +59,17 @@ app.use(function (ctx, next) {
 
 
 
+
+
 // csrf
-app.use(new CSRF({
-  invalidSessionSecretMessage: 'Invalid session secret',
-  invalidSessionSecretStatusCode: 403,
-  invalidTokenMessage: 'Invalid CSRF token',
-  invalidTokenStatusCode: 403,
-  excludedMethods: ['GET', 'HEAD', 'OPTIONS'],
-  disableQuery: false
-}));
+// app.use(new CSRF({
+//   invalidSessionSecretMessage: 'Invalid session secret',
+//   invalidSessionSecretStatusCode: 403,
+//   invalidTokenMessage: 'Invalid CSRF token',
+//   invalidTokenStatusCode: 403,
+//   excludedMethods: ['GET', 'HEAD', 'OPTIONS'],
+//   disableQuery: false
+// }));
 
 
 app.use(helper)
@@ -90,11 +99,15 @@ app.use(cors({
 // routes
 
 router.use(
-  '/api',
+  // '/api',
   jwt({
     secret: config.jwt_secret
   }).unless({
-    path: [/^\/api\/login/]
+    path: [
+      /^\/api\/logintoken/, 
+      /^\/api\/articles/,
+      /^\/api\/categories/,
+    ]
   }),
   api.routes()
 )
