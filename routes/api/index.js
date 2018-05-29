@@ -3,14 +3,14 @@ const article = require('./article')
 const user = require('./user')
 const category = require('./category')
 
-
-router.prefix('/api')
+const jwt = require('koa-jwt')
+// router.prefix('/api')
 
 
 
 router.use(article.routes(), article.allowedMethods());
 router.use(user.routes(), user.allowedMethods());
-router.use(category.routes(), category.allowedMethods());
+router.use("/",category.routes(), category.allowedMethods());
 
 
 

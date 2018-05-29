@@ -160,6 +160,8 @@ const apiCreateArticle = async (ctx, next) => {
   let text = ctx.request.body.content
   let categoryId = ctx.request.body.categoryId
 
+  console.log(categoryId);
+
   let article = new Article({
     title: noteTitle,
     author: 'stutter',
@@ -185,6 +187,52 @@ const apiCreateArticle = async (ctx, next) => {
   }
 }
 
+const apiDeleteArticle = async (ctx, next) => {
+  ctx.body = {
+    status: 200,
+    message: 'Deleted Successfully!'
+  }
+
+  let id = ctx.params.id
+  try {
+    await Article.findByIdAndRemove(id);
+  } catch (error) { 
+    ctx.body = {
+      status: 500,
+      message:'服务端错误'
+    }
+  }
+}
+
+const apiEditArticle = async (ctx, next) => {
+  ctx.body = {
+    status: 200,
+    message: 'Edited Successfully!'
+  }
+
+  let id = ctx.params.id
+  let noteTitle = ctx.request.body.note_title
+  let text = ctx.request.body.content
+  let categoryId = ctx.request.body.categoryId
+
+  let updateStr = {
+    title: noteTitle,
+    content: text,
+    category: categoryId,
+    updated: Date.now()
+  }
+
+  try {
+    await Article.findByIdAndUpdate(id, updateStr).exec()
+  } catch (error) {
+    ctx.body = {
+      status: 500,
+      message: '服务端错误'
+    }
+  }
+
+}
+
 module.exports = {
   showArticle,
   showAllArticles,
@@ -196,5 +244,7 @@ module.exports = {
   // api
   getAllArticle,
   getArticleById,
-  apiCreateArticle
+  apiCreateArticle,
+  apiDeleteArticle,
+  apiEditArticle
 }

@@ -3,9 +3,8 @@ const categoryController = require('../controllers/categoryController')
 
 
 
-router.prefix('/category')
 
 // router.get('/categories', categoryController.getAllCategories)
-router.post('/create', categoryController.createCategory)
-
+router.post('category/create', categoryController.createCategory)
+     .get('categories', categoryController.apiGetAllCategories)
 module.exports = router

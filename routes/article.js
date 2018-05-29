@@ -12,7 +12,7 @@ var result = md.render('# markdown \n # 123')
 //         result: result
 //     })
 // })
-router.prefix('/article')
+router.prefix('/article/')
 
 
 router

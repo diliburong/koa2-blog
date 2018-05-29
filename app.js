@@ -91,7 +91,7 @@ app.use(cors({
   exposeHeaders: ['WWW-Authenticate', 'Server-Authorization'],
   maxAge: 5,
   credentials: true,
-  allowMethods: ['GET', 'POST', 'DELETE'],
+  allowMethods: ['GET', 'POST', 'DELETE', 'PUT'],
   allowHeaders: ['Content-Type', 'Authorization', 'Accept'],
 }))
 
@@ -99,7 +99,7 @@ app.use(cors({
 // routes
 
 router.use(
-  // '/api',
+  '/api',
   jwt({
     secret: config.jwt_secret
   }).unless({
@@ -107,6 +107,7 @@ router.use(
       /^\/api\/logintoken/, 
       /^\/api\/articles/,
       /^\/api\/categories/,
+      /^\/api\/category/,
     ]
   }),
   api.routes()
@@ -114,8 +115,6 @@ router.use(
 
 app.use(router.routes(), router.allowedMethods())
 // app.use(api.routes(), api.allowedMethods())
-
-// jwt
 
 
 

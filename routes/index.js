@@ -12,7 +12,7 @@ var result = md.render('# markdown')
 
 
 router.use(users.routes(), users.allowedMethods())
-router.use(category.routes(), category.allowedMethods())
+router.use("/", category.routes(), category.allowedMethods())
 router.use(article.routes(), article.allowedMethods())
 
 
