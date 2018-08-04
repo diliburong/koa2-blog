@@ -120,7 +120,7 @@ const editArticle = async (ctx, next) => {
 // api
 
 const getAllArticle = async (ctx, next) => {
-  let articles = await Article.find().populate('category').exec()
+  let articles = await Article.find().populate('category').sort({ '_id': -1 }).exec()
   // const title = 'home'
   // format time
   // articles.forEach((item) => {

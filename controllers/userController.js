@@ -132,38 +132,44 @@ const apiLogin = async (ctx, next) => {
 
   const status = 200
 
-  let user = await User.findOne({
-    'username': username
-  }).exec()
+  try {
+    let user = await User.findOne({
+      'username': username
+    }).exec()
 
-  if (user && md5(password) === user.password) {
-    // ctx.session.userId = user._id
-    // ctx.status = 302
-    // ctx.flashMessage.notice = 'Log In Successfully!'
-    // ctx.redirect('/')
-    
-    // token = '123'
-    let userToken = {
-      id:user._id
+    if (user && md5(password) === user.password) {
+      let userToken = {
+        id: user._id
+      }
+
+      // 传第一个参数时要是一个object 
+      const token = jwt.sign(
+        userToken,
+        config.jwt_secret, {
+          expiresIn: '1h'
+        })
+      let configjwt = config.jwt_secret
+      // token = 123
+      ctx.body = {
+        status,
+        token,
+      }
+
+    } else {
+      ctx.body = {
+        status: 501,
+        message: 'Password is wrong'
+      }
     }
 
-    // 传第一个参数时要是一个object 
-    const token = jwt.sign(
-      userToken,
-      config.jwt_secret,{
-        expiresIn: '1h'
-    })
-    let configjwt = config.jwt_secret
-    // token = 123
+  } catch (error) {
     ctx.body = {
-      status,
-      token,
+      status: 502,
+      token: 'Can not find user'
     }
-
-  } else {
-
-
   }
+
+
 
 }
 
