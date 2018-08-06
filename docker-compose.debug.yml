@@ -1,0 +1,14 @@
+version: '2.1'
+
+services:
+  koa2-blog:
+    image: koa2-blog
+    build: .
+    environment:
+      NODE_ENV: development
+    ports:
+      - 3000:3000
+      - 9229:9229
+    volumes:
+      - .:/usr/src/app
+    command: node --inspect bin/www

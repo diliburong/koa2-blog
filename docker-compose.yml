@@ -1,0 +1,8 @@
+version: '2.1'
+
+services:
+  koa2-blog:
+    image: koa2-blog
+    build: .
+    ports:
+      - 3002:3002
