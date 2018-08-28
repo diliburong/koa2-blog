@@ -209,7 +209,7 @@ pre>code {
 
 .top {
     position: fixed;
-    bottom: 4rem;
+    bottom: 5rem;
     border-radius: 6px;
     padding: .3rem .75rem;
     font-size: 2rem;
@@ -238,7 +238,7 @@ div.top:hover {
     opacity: .8;
 }
 
-@media only screen and (min-width: 1350px){
+@media only screen and (min-width: 760px){
     .top.top-active, .tweet-it.tweet-it-active {
         opacity: .6;
         transform: translateY(0);

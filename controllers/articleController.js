@@ -7,13 +7,13 @@ const moment = require('moment');
 const showArticle = async (ctx, next) => {
   let id = ctx.params.id
   let article = null
-  
+
   try {
     article = await Article.findById(id).populate('category').exec()
   } catch (err) {
     ctx.throw(404)
   }
-  
+
   const title = article.title
   await ctx.render('articles/article', {
     title,
@@ -26,8 +26,17 @@ const showArticle = async (ctx, next) => {
 }
 
 const showAllArticles = async (ctx, next) => {
-  let articles = await Article.find().populate('category').exec()
+  // let articles = await Article.find().populate('category').exec()
   const title = 'home'
+
+  // Pagination
+  let page = parseInt(ctx.query.page, 10) || 1;
+  let result = await Article.paginate({}, { page: page, limit: 5, populate: ['category'] });
+
+  let totalPage = result.pages
+  let totolCount = result.total
+  let articles = result.docs
+
   // format time
   articles.forEach((item) => {
     item.createdTime = moment(item.created).format('MMMM YYYY')
@@ -36,6 +45,7 @@ const showAllArticles = async (ctx, next) => {
   await ctx.render('index', {
     title,
     articles,
+    totalPage:totalPage,
     nav: 'home'
   })
 }
@@ -55,7 +65,7 @@ const toCreateArticlePage = async (ctx, next) => {
 
 
 
-const createArticle  = async (ctx, next) => {
+const createArticle = async (ctx, next) => {
   let noteTitle = ctx.request.body.note_title
   let text = ctx.request.body.content
   let categoryId = ctx.request.body.categoryId
@@ -121,10 +131,7 @@ const editArticle = async (ctx, next) => {
 
 const getAllArticle = async (ctx, next) => {
   let articles = await Article.find().populate('category').sort({ '_id': -1 }).exec()
-  // const title = 'home'
-  // format time
-  // articles.forEach((item) => {
-  // })
+
 
   for (const item of articles) {
     item.createdTime = moment(item.created).format('MMMM YYYY')
@@ -135,7 +142,7 @@ const getAllArticle = async (ctx, next) => {
   }
 }
 
-const getArticleById = async(ctx, next) =>{
+const getArticleById = async (ctx, next) => {
   let id = ctx.params.id
   let article = null
 
@@ -196,10 +203,10 @@ const apiDeleteArticle = async (ctx, next) => {
   let id = ctx.params.id
   try {
     await Article.findByIdAndRemove(id);
-  } catch (error) { 
+  } catch (error) {
     ctx.body = {
       status: 500,
-      message:'服务端错误'
+      message: '服务端错误'
     }
   }
 }
