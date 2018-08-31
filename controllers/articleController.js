@@ -9,7 +9,7 @@ const showArticle = async (ctx, next) => {
   let article = null
 
   try {
-    article = await Article.findById(id).populate('category').exec()
+    article = await Article.findById(id).populate('category').populate('author').exec()
   } catch (err) {
     ctx.throw(404)
   }
@@ -20,6 +20,7 @@ const showArticle = async (ctx, next) => {
     tag: article.tag,
     articleTitle: article.title,
     category: article.category.name,
+    authorName: article.author.username,
     result: md.render(article.content),
     nav: 'article'
   })

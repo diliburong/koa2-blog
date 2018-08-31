@@ -6,7 +6,10 @@ const mongoosePaginate = require('mongoose-paginate');
 
 let arcitleItem = {
   title: String,
-  author: String,
+  author: {
+    type: Schema.Types.ObjectId,
+    ref:'user'
+  },
   description: String,
   content: String,
   tag: String,
