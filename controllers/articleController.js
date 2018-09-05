@@ -9,7 +9,7 @@ const showArticle = async (ctx, next) => {
   let article = null
 
   try {
-    article = await Article.findById(id).populate('category').exec()
+    article = await Article.findById(id).populate(['category', 'author']).exec()
   } catch (err) {
     ctx.throw(404)
   }
@@ -19,6 +19,7 @@ const showArticle = async (ctx, next) => {
     title,
     tag: article.tag,
     articleTitle: article.title,
+    author: article.author.username,
     category: article.category.name,
     result: md.render(article.content),
     nav: 'article'
@@ -31,7 +32,12 @@ const showAllArticles = async (ctx, next) => {
 
   // Pagination
   let page = parseInt(ctx.query.page, 10) || 1;
-  let result = await Article.paginate({}, { page: page, limit: 5, populate: ['category'] });
+  let result = await Article.paginate({}, {
+      sort: { created: 'desc' },
+      page: page,
+      limit: 5,
+      populate: ['category']
+    });
 
   let totalPage = result.pages
   let totolCount = result.total
@@ -69,10 +75,11 @@ const createArticle = async (ctx, next) => {
   let noteTitle = ctx.request.body.note_title
   let text = ctx.request.body.content
   let categoryId = ctx.request.body.categoryId
+  let currentUser = ctx.session.userId
 
   let article = new Article({
     title: noteTitle,
-    author: 'stutter',
+    author: currentUser,
     description: "",
     content: text,
     tag: 'test',

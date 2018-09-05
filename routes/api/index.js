@@ -10,7 +10,7 @@ const jwt = require('koa-jwt')
 
 router.use(article.routes(), article.allowedMethods());
 router.use(user.routes(), user.allowedMethods());
-router.use("/",category.routes(), category.allowedMethods());
+router.use("/", category.routes(), category.allowedMethods());
 
 
 
