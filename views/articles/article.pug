@@ -5,7 +5,7 @@ block content
     .container
       .title-wrapper
         h1.article-detail-title #{articleTitle}
-        span.article-author Stutter
+        span.article-author #{author}
         p.category #{category}
       .article-content
         .article-markdown-content.
@@ -15,5 +15,4 @@ block dynamicJs
   script.
     hljs.initHighlightingOnLoad()
 
-    
-  
+
