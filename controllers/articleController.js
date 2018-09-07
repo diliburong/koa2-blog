@@ -2,6 +2,8 @@ const Article = require('../model/article.js')
 const CategoryController = require('./categoryController')
 const md = require('markdown-it')()
 const moment = require('moment');
+const jwt = require('jsonwebtoken');
+const config = require('../config/index')
 
 
 const showArticle = async (ctx, next) => {
@@ -173,12 +175,26 @@ const apiCreateArticle = async (ctx, next) => {
   let noteTitle = ctx.request.body.note_title
   let text = ctx.request.body.content
   let categoryId = ctx.request.body.categoryId
+  let token = ctx.header.authorization
 
-  console.log(categoryId);
+  try {
+    if (token) {
+      let currentUser = await jwt.verify(token.split(' ')[1], config.jwt_secret)
+      ctx.body = { currentUser }
+    }
+  } catch (error) {
+    ctx.body = {
+      status: 403,
+      message: '权限不足'
+    }
 
+    return
+  }
+
+  let author = ctx.body.currentUser.id
   let article = new Article({
     title: noteTitle,
-    author: 'stutter',
+    author: author,
     description: "",
     content: text,
     tag: 'test',

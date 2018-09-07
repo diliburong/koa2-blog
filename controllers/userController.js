@@ -118,7 +118,6 @@ const test = async (ctx, next) => {
     username,
     password
   }
-
 }
 
 
@@ -129,7 +128,7 @@ const apiLogin = async (ctx, next) => {
   const body = ctx.request.body
   const username = body.username
   const password = body.password
-
+  console.log(username)
   const status = 200
 
   try {
@@ -142,7 +141,7 @@ const apiLogin = async (ctx, next) => {
         id: user._id
       }
 
-      // 传第一个参数时要是一个object 
+      // 传第一个参数时要是一个object
       const token = jwt.sign(
         userToken,
         config.jwt_secret, {
@@ -168,9 +167,6 @@ const apiLogin = async (ctx, next) => {
       token: 'Can not find user'
     }
   }
-
-
-
 }
 
 module.exports = {
