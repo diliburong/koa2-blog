@@ -158,11 +158,10 @@ const getArticleById = async (ctx, next) => {
   let status = 200
 
   try {
-    article = await Article.findById(id).populate('category').exec()
+    article = await Article.findById(id).populate(['category', 'author']).exec()
   } catch (err) {
     console.log('not found')
     status = 404
-    // ctx.throw(404)
   }
 
   ctx.body = {
